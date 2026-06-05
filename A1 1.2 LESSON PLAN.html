@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson Plan – Section 1.2</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left: '\\(', right: '\\)', display: false},
+      {left: '\\[', right: '\\]', display: true}
+    ]
+  });"></script>
+<style>
+  :root {
+    --navy:        #1a2744;
+    --blue:        #2d5fa6;
+    --light-blue:  #e8f0fb;
+    --mid-blue:    #b8ccf0;
+    --accent:      #e8a020;
+    --green:       #2e7d55;
+    --light-green: #eaf4ee;
+    --gray:        #f4f5f7;
+    --border:      #d1d9e6;
+    --text:        #1e2535;
+    --muted:       #6b7897;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: #f0f3f9;
+    color: var(--text);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .page {
+    max-width: 860px;
+    margin: 24px auto;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  }
+  .header {
+    background: var(--navy);
+    padding: 22px 32px 18px;
+  }
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: white;
+  }
+  .header h2 {
+    font-size: 11px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.65);
+    margin-top: 2px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+  .badge-row { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+  .badge {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    border-radius: 20px;
+    padding: 3px 11px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .body { padding: 20px 28px; display: grid; gap: 14px; }
+  .card { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .card-header {
+    padding: 7px 14px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+  }
+  .card-header.navy { background: var(--navy); color: white; }
+  .card-header.blue { background: var(--light-blue); color: var(--navy); border-bottom: 1.5px solid var(--mid-blue); }
+  .card-body { padding: 12px 14px; }
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .info-item label {
+    display: block; font-size: 10px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 3px;
+  }
+  .info-item span { font-size: 13px; font-weight: 600; color: var(--text); }
+  .criteria-list { list-style: none; display: grid; gap: 6px; }
+  .criteria-list li {
+    padding: 7px 10px 7px 32px;
+    background: var(--light-blue);
+    border-radius: 6px;
+    font-size: 12.5px;
+    position: relative;
+  }
+  .criteria-list li::before { content: '✓'; position: absolute; left: 10px; color: var(--blue); font-weight: 700; }
+  .vocab-chip {
+    display: inline-block;
+    background: var(--light-blue);
+    border: 1px solid var(--mid-blue);
+    color: var(--blue);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    margin: 3px;
+  }
+  /* DAY CARDS */
+  .day-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .day-card { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .day-header {
+    padding: 10px 14px; font-weight: 700; font-size: 13px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .day-header.day1 { background: var(--light-blue); color: var(--blue); border-bottom: 2px solid var(--blue); }
+  .day-header.day2 { background: var(--light-green); color: var(--green); border-bottom: 2px solid var(--green); }
+  .day-body { padding: 12px 14px; display: grid; gap: 8px; }
+  .phase { border-radius: 7px; overflow: hidden; border: 1px solid var(--border); }
+  .phase-label {
+    padding: 5px 10px; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.8px; text-transform: uppercase;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .phase-label.i-do  { background: #e3ecf9; color: var(--blue); }
+  .phase-label.we-do { background: #e9f5ee; color: var(--green); }
+  .phase-label.you-do{ background: #fff4e0; color: #b07000; }
+  .phase-label.assign{ background: #f0eafb; color: #6a3db8; }
+  .phase-label.warm  { background: #fdecea; color: #c0392b; }
+  .phase-content { padding: 7px 10px; font-size: 12px; background: white; }
+  .phase-content p { margin-bottom: 3px; }
+  .phase-content .detail { color: var(--muted); font-size: 11px; font-style: italic; }
+  .time-tag {
+    font-size: 10px; font-weight: 700;
+    background: rgba(255,255,255,0.7);
+    border-radius: 10px; padding: 1px 6px;
+  }
+  .math-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; align-items: center; }
+  .math-item {
+    background: var(--gray); border: 1px solid var(--border);
+    border-radius: 6px; padding: 4px 10px;
+    font-size: 12px; white-space: nowrap;
+  }
+  .math-label { font-size: 11px; font-weight: 700; color: var(--muted); margin-right: 4px; }
+  /* TABLE */
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  th { background: var(--navy); color: white; padding: 7px 12px; text-align: left; font-size: 10px; letter-spacing: 0.5px; text-transform: uppercase; }
+  td { padding: 7px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: var(--gray); }
+  .tag { display: inline-block; border-radius: 4px; padding: 1px 7px; font-size: 11px; font-weight: 700; }
+  .tag.day1 { background: var(--light-blue); color: var(--blue); }
+  .tag.day2 { background: var(--light-green); color: var(--green); }
+  /* MINI ASSESS */
+  .mini-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .mini-item { background: #fdecea; border: 1px solid #f4b8b2; border-radius: 8px; padding: 10px 12px; font-size: 12px; }
+  .mini-item .num { font-weight: 700; color: #c0392b; font-size: 10px; text-transform: uppercase; margin-bottom: 4px; }
+  /* NOTE */
+  .note { background: #fffbe6; border-left: 4px solid var(--accent); border-radius: 0 8px 8px 0; padding: 10px 14px; font-size: 12px; color: #6b5000; }
+  .note strong { color: #4a3800; }
+  .page-break { page-break-before: always; }
+  .katex { font-size: 1em; }
+  @media print {
+    body { background: white; }
+    .page { box-shadow: none; margin: 0; border-radius: 0; max-width: 100%; }
+    .page-break { page-break-before: always; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>Section 1.2 — Finding Cube Roots</h1>
+    <h2>Algebra 1 · Big Ideas Learning · Chapter 1</h2>
+    <div class="badge-row">
+      <span class="badge">OAS: A1.N.1.1, A1.A.3.4</span>
+      <span class="badge">2 Days · 45 min each</span>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <!-- AT A GLANCE -->
+    <div class="card">
+      <div class="card-header navy">At a Glance</div>
+      <div class="card-body">
+        <div class="info-grid">
+          <div class="info-item">
+            <label>Learning Target</label>
+            <span>Find cube roots of numbers</span>
+          </div>
+          <div class="info-item">
+            <label>Vocabulary</label>
+            <span>cube root, perfect cube</span>
+          </div>
+          <div class="info-item">
+            <label>Oklahoma Standards</label>
+            <span>A1.N.1.1, A1.A.3.4</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUCCESS CRITERIA -->
+    <div class="card">
+      <div class="card-header blue">✦ Success Criteria</div>
+      <div class="card-body">
+        <ul class="criteria-list">
+          <li>Find cube roots of numbers.</li>
+          <li>Evaluate expressions that contain cube roots.</li>
+          <li>Use cube roots to solve real-life problems.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- VOCABULARY -->
+    <div class="card">
+      <div class="card-header blue">Vocabulary</div>
+      <div class="card-body">
+        <span class="vocab-chip">cube root</span>
+        <span class="vocab-chip">perfect cube</span>
+        <p style="margin-top:10px; font-size:12px; color:var(--muted);">
+          A <strong>cube root</strong> of a number is a number that, when multiplied by itself twice, equals the given number.
+          A <strong>perfect cube</strong> is a number that can be written as the cube of an integer. The symbol \(\sqrt[3]{\phantom{x}}\) represents a cube root.
+        </p>
+      </div>
+    </div>
+
+    <!-- EXAMPLES COVERED -->
+    <div class="card">
+      <div class="card-header blue">Examples Covered</div>
+      <div class="card-body" style="padding:0;">
+        <table>
+          <thead>
+            <tr><th>Day</th><th>Example</th><th>Title (from text)</th><th>Details</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="tag day1">Day 1</span></td><td><strong>Example 1</strong></td><td>Finding Cube Roots</td><td>\(\sqrt[3]{8},\ \sqrt[3]{-27},\ \sqrt[3]{\tfrac{1}{64}},\ \sqrt[3]{\tfrac{27}{125}}\)</td></tr>
+            <tr><td><span class="tag day1">Day 1</span></td><td><strong>Extra Example 1</strong></td><td>We Do follow-along</td><td>\(\sqrt[3]{512},\ \sqrt[3]{-729},\ \sqrt[3]{\tfrac{1}{216}},\ \sqrt[3]{-\tfrac{125}{343}}\)</td></tr>
+            <tr><td><span class="tag day1">Day 1</span></td><td><strong>Example 2</strong></td><td>Evaluating Expressions Involving Cube Roots</td><td>\(2\sqrt[3]{-216}-3,\ (\sqrt[3]{125})^3+21\)</td></tr>
+            <tr><td><span class="tag day1">Day 1</span></td><td><strong>Extra Example 2</strong></td><td>We Do follow-along</td><td>\(3\sqrt[3]{125}-8,\ (\sqrt[3]{27})^3-4\)</td></tr>
+            <tr><td><span class="tag day2">Day 2</span></td><td><strong>Example 3</strong></td><td>Evaluating an Algebraic Expression</td><td>\(\tfrac{x}{4}+\sqrt[3]{\tfrac{x}{3}},\ 9x+\sqrt[3]{x}\)</td></tr>
+            <tr><td><span class="tag day2">Day 2</span></td><td><strong>Extra Example 3</strong></td><td>We Do follow-along</td><td>\(\tfrac{w}{30}-\sqrt[3]{\tfrac{w}{5}},\ 64n-\sqrt[3]{2n}\)</td></tr>
+            <tr><td><span class="tag day2">Day 2</span></td><td><strong>Example 4</strong></td><td>Evaluating an Algebraic Expression</td><td>\(5\sqrt[3]{3x-9}-7x,\ x=-6\)</td></tr>
+            <tr><td><span class="tag day2">Day 2</span></td><td><strong>Extra Example 4</strong></td><td>We Do follow-along</td><td>\(4\sqrt[3]{3t+6}-4t,\ t=7\)</td></tr>
+            <tr><td><span class="tag day2">Day 2</span></td><td><strong>Example 5</strong></td><td>Modeling Real Life</td><td>Surface area of baseball display case; \(V=125\) in³</td></tr>
+            <tr><td><span class="tag day2">Day 2</span></td><td><strong>Extra Example 5</strong></td><td>We Do follow-along</td><td>Surface area of cube with \(V=27\) ft³</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- DAY PLANS -->
+    <div class="page-break"></div>
+    <div>
+      <div style="font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin-bottom:10px;">Daily Pacing</div>
+      <div class="day-grid">
+
+        <!-- DAY 1 -->
+        <div class="day-card">
+          <div class="day-header day1">
+            <span>📅 Day 1</span>
+            <span style="font-weight:400; font-size:11px;">Finding &amp; Evaluating Cube Roots</span>
+          </div>
+          <div class="day-body">
+
+            <div class="phase">
+              <div class="phase-label i-do"><span>I Do — Direct Instruction</span><span class="time-tag">~10 min</span></div>
+              <div class="phase-content">
+                <p><strong>Example 1:</strong> Finding Cube Roots</p>
+                <div class="math-row">
+                  <span class="math-item"><span class="math-label">(a)</span>\(\sqrt[3]{8}\)</span>
+                  <span class="math-item"><span class="math-label">(b)</span>\(\sqrt[3]{-27}\)</span>
+                  <span class="math-item"><span class="math-label">(c)</span>\(\sqrt[3]{\tfrac{1}{64}}\)</span>
+                  <span class="math-item"><span class="math-label">(d)</span>\(\sqrt[3]{\tfrac{27}{125}}\)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="phase">
+              <div class="phase-label we-do"><span>We Do — Guided Practice</span><span class="time-tag">~8 min</span></div>
+              <div class="phase-content">
+                <p><strong>Extra Example 1</strong></p>
+                <div class="math-row">
+                  <span class="math-item"><span class="math-label">(a)</span>\(\sqrt[3]{512}\)</span>
+                  <span class="math-item"><span class="math-label">(b)</span>\(\sqrt[3]{-729}\)</span>
+                  <span class="math-item"><span class="math-label">(c)</span>\(\sqrt[3]{\tfrac{1}{216}}\)</span>
+                  <span class="math-item"><span class="math-label">(d)</span>\(\sqrt[3]{-\tfrac{125}{343}}\)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="phase">
+              <div class="phase-label i-do"><span>I Do — Direct Instruction</span><span class="time-tag">~8 min</span></div>
+              <div class="phase-content">
+                <p><strong>Example 2:</strong> Evaluating Expressions Involving Cube Roots</p>
+                <div class="math-row">
+                  <span class="math-item"><span class="math-label">(a)</span>\(2\sqrt[3]{-216}-3\)</span>
+                  <span class="math-item"><span class="math-label">(b)</span>\((\sqrt[3]{125})^3+21\)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="phase">
+              <div class="phase-label we-do"><span>We Do — Guided Practice</span><span class="time-tag">~5 min</span></div>
+              <div class="phase-content">
+                <p><strong>Extra Example 2</strong></p>
+                <div class="math-row">
+                  <span class="math-item"><span class="math-label">(a)</span>\(3\sqrt[3]{125}-8\)</span>
+                  <span class="math-item"><span class="math-label">(b)</span>\((\sqrt[3]{27})^3-4\)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="phase">
+              <div class="phase-label you-do"><span>You Do — Self-Assessment</span><span class="time-tag">~8 min</span></div>
+              <div class="phase-content">
+                <p><strong>SA Problems 1–6</strong></p>
+                <div class="math-row">
+                  <span class="math-item">\(\sqrt[3]{1}\)</span>
+                  <span class="math-item">\(\sqrt[3]{-343}\)</span>
+                  <span class="math-item">\(\sqrt[3]{-\tfrac{27}{1000}}\)</span>
+                  <span class="math-item">\(18-4\sqrt[3]{8}\)</span>
+                  <span class="math-item">\((\sqrt[3]{-64})^3+43\)</span>
+                  <span class="math-item">\(5\sqrt[3]{512}-19\)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="phase">
+              <div class="phase-label assign"><span>Assignment (in class)</span><span class="time-tag">~6 min</span></div>
+              <div class="phase-content">
+                <p><strong>Exercises 5, 6, 7, 8, 11, 12</strong></p>
+                <p class="detail">Cube roots (5–8) + evaluating expressions (11–12). Mirrors Examples 1 and 2.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- DAY 2 -->
+        <div class="day-card">
+          <div class="day-header day2">
+            <span>📅 Day 2</span>
+            <span style="font-weight:400; font-size:11px;">Algebraic Expressions &amp; Modeling</span>
+          </div>
+          <div class="day-body">
+
+            <div class="phase">
+              <div class="phase-label warm"><span>Warm-Up Review</span><span class="time-tag">~4 min</span></div>
+              <div class="phase-content">
+                <p>Quick cube root review from Day 1.</p>
+                <p class="detail">Bridge to algebraic expressions with cube roots.</p>
+              </div>
+            </div>
+
+            <div class="phase">
+              <div class="phase-label i-do"><span>I Do — Direct Instruction</span><span class="time-tag">~10 min</span></div>
+              <div class="phase-content">
+                <p><strong>Example 3:</strong> Evaluating an Algebraic Expression</p>
+                <div class="math-row">
+                  <span class="math-item"><span class="math-label">(a)</span>\(\tfrac{x}{4}+\sqrt[3]{\tfrac{x}{3}},\ x=192\)</span>
+                  <span class="math-item"><span class="math-label">(b)</span>\(9x+\sqrt[3]{x},\ x=\tfrac{1}{27}\)</span>
+                </div>
+                <p style="margin-top:6px;"><strong>Example 4:</strong> Evaluating an Algebraic Expression</p>
+                <div class="math-row">
+                  <span class="math-item">\(5\sqrt[3]{3x-9}-7x,\ x=-6\)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="phase">
+              <div class="phase-label we-do"><span>We Do — Guided Practice</span><span class="time-tag">~8 min</span></div>
+              <div class="phase-content">
+                <p><strong>Extra Example 3</strong></p>
+                <div class="math-row">
+                  <span class="math-item"><span class="math-label">(a)</span>\(\tfrac{w}{30}-\sqrt[3]{\tfrac{w}{5}},\ w=1080\)</span>
+                  <span class="math-item"><span class="math-label">(b)</span>\(64n-\sqrt[3]{2n},\ n=\tfrac{1}{128}\)</span>
+                </div>
+                <p style="margin-top:6px;"><strong>Extra Example 4:</strong> &nbsp;\(4\sqrt[3]{3t+6}-4t,\ t=7\)</p>
+              </div>
+            </div>
+
+            <div class="phase">
+              <div class="phase-label i-do"><span>I Do — Modeling Real Life</span><span class="time-tag">~5 min</span></div>
+              <div class="phase-content">
+                <p><strong>Example 5:</strong> Modeling Real Life</p>
+                <p class="detail">Baseball display case: \(V=125\) in³. Find edge length then surface area using \(s=\sqrt[3]{V}\) and \(S=6s^2\).</p>
+                <p style="margin-top:4px;"><strong>Extra Example 5:</strong> &nbsp;Cube with \(V=27\) ft³, find surface area.</p>
+              </div>
+            </div>
+
+            <div class="phase">
+              <div class="phase-label you-do"><span>You Do — Self-Assessment</span><span class="time-tag">~6 min</span></div>
+              <div class="phase-content">
+                <p><strong>SA Problems 7–10</strong></p>
+                <div class="math-row">
+                  <span class="math-item">\(\sqrt[3]{8y}+y,\ y=64\)</span>
+                  <span class="math-item">\(2b-\sqrt[3]{9b},\ b=-3\)</span>
+                  <span class="math-item">\(4x-\sqrt[3]{6x+2},\ x=-11\)</span>
+                  <span class="math-item">Music box: \(V=512\) cm³</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="phase">
+              <div class="phase-label assign"><span>Assignment (in class)</span><span class="time-tag">~12 min</span></div>
+              <div class="phase-content">
+                <p><strong>Exercises 3, 4, 10, 14, 16, 20, 22, 25, 26</strong></p>
+                <p class="detail">Edge lengths (3–4) + cube roots (10) + expressions with variables (14, 16, 20, 22) + modeling (25, 26).</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MINI ASSESSMENT -->
+    <div class="card">
+      <div class="card-header" style="background:#c0392b; color:white; font-size:10px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; padding:7px 14px;">Exit Ticket / Mini-Assessment (end of Day 2)</div>
+      <div class="card-body">
+        <div class="mini-grid">
+          <div class="mini-item">
+            <div class="num">Problem 1</div>
+            Find \(\sqrt[3]{-512}\).<br>
+            <strong>Answer: \(-8\)</strong>
+          </div>
+          <div class="mini-item">
+            <div class="num">Problem 2</div>
+            Evaluate \(3+4\sqrt[3]{27}\).<br>
+            <strong>Answer: \(15\)</strong>
+          </div>
+          <div class="mini-item">
+            <div class="num">Problem 3</div>
+            Evaluate \(\sqrt[3]{-216}-16\).<br>
+            <strong>Answer: \(-22\)</strong>
+          </div>
+          <div class="mini-item">
+            <div class="num">Problem 4</div>
+            Evaluate \(\bigl(\sqrt[3]{-8}\bigr)^3+15\).<br>
+            <strong>Answer: \(7\)</strong>
+          </div>
+          <div class="mini-item">
+            <div class="num">Problem 5</div>
+            Evaluate \(\bigl(\sqrt[3]{5b}\bigr)-\tfrac{3b}{5}\) when \(b=25\).<br>
+            <strong>Answer: \(-10\)</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEACHER NOTES -->
+    <div class="note">
+      <div style="display:flex; gap:20px; align-items:flex-start;">
+        <div style="flex:1; min-width:200px; font-size:12px;">
+          <strong>📝 Teacher Notes:</strong> Example 5 (Modeling Real Life) uses the baseball display case surface area problem. The cube root IS the mathematics — surface area provides the real-world context and hits the modeling success criterion. Extra Example 5 (cube with V=27 ft³) mirrors it as the We Do.
+          <br><br>
+          <strong>Assignment Guide:</strong> Problems selected align with the textbook's <em>Proficient</em> level. The table cross-references BI curriculum exercise numbers with student worksheet numbers. <strong>✅ marks the textbook's key check problems</strong> for the learning target — if time is short, these are non-negotiable.
+        </div>
+        <table style="width:280px; flex-shrink:0; border-collapse:collapse; font-size:11.5px;">
+          <thead>
+            <tr>
+              <th style="background:#1a2744; color:white; padding:4px 8px; text-align:center;">BI #</th>
+              <th style="background:#1a2744; color:white; padding:4px 8px; text-align:center;">WS #</th>
+              <th style="background:#1a2744; color:white; padding:4px 8px; text-align:center;">Day</th>
+              <th style="background:#1a2744; color:white; padding:4px 8px; text-align:center;">Check</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background:#f4f5f7;"><td style="padding:3px 8px; text-align:center;">5</td><td style="padding:3px 8px; text-align:center;">1</td><td style="padding:3px 8px; text-align:center;">1</td><td style="padding:3px 8px; text-align:center;">—</td></tr>
+            <tr><td style="padding:3px 8px; text-align:center;">6</td><td style="padding:3px 8px; text-align:center;">2</td><td style="padding:3px 8px; text-align:center;">1</td><td style="padding:3px 8px; text-align:center;">—</td></tr>
+            <tr style="background:#f4f5f7;"><td style="padding:3px 8px; text-align:center;">7</td><td style="padding:3px 8px; text-align:center;">3</td><td style="padding:3px 8px; text-align:center;">1</td><td style="padding:3px 8px; text-align:center;">—</td></tr>
+            <tr><td style="padding:3px 8px; text-align:center;">8</td><td style="padding:3px 8px; text-align:center;">4</td><td style="padding:3px 8px; text-align:center;">1</td><td style="padding:3px 8px; text-align:center;">—</td></tr>
+            <tr style="background:#f4f5f7;"><td style="padding:3px 8px; text-align:center;">11</td><td style="padding:3px 8px; text-align:center;">5</td><td style="padding:3px 8px; text-align:center;">1</td><td style="padding:3px 8px; text-align:center;">—</td></tr>
+            <tr><td style="padding:3px 8px; text-align:center;"><strong>12</strong></td><td style="padding:3px 8px; text-align:center;"><strong>6</strong></td><td style="padding:3px 8px; text-align:center;">1</td><td style="padding:3px 8px; text-align:center;">✅</td></tr>
+            <tr style="background:#f4f5f7;"><td style="padding:3px 8px; text-align:center;">3</td><td style="padding:3px 8px; text-align:center;">7</td><td style="padding:3px 8px; text-align:center;">2</td><td style="padding:3px 8px; text-align:center;">—</td></tr>
+            <tr><td style="padding:3px 8px; text-align:center;"><strong>4</strong></td><td style="padding:3px 8px; text-align:center;"><strong>8</strong></td><td style="padding:3px 8px; text-align:center;">2</td><td style="padding:3px 8px; text-align:center;">✅</td></tr>
+            <tr style="background:#f4f5f7;"><td style="padding:3px 8px; text-align:center;"><strong>10</strong></td><td style="padding:3px 8px; text-align:center;"><strong>9</strong></td><td style="padding:3px 8px; text-align:center;">2</td><td style="padding:3px 8px; text-align:center;">✅</td></tr>
+            <tr><td style="padding:3px 8px; text-align:center;">14</td><td style="padding:3px 8px; text-align:center;">10</td><td style="padding:3px 8px; text-align:center;">2</td><td style="padding:3px 8px; text-align:center;">—</td></tr>
+            <tr style="background:#f4f5f7;"><td style="padding:3px 8px; text-align:center;">16</td><td style="padding:3px 8px; text-align:center;">11</td><td style="padding:3px 8px; text-align:center;">2</td><td style="padding:3px 8px; text-align:center;">—</td></tr>
+            <tr><td style="padding:3px 8px; text-align:center;"><strong>20</strong></td><td style="padding:3px 8px; text-align:center;"><strong>12</strong></td><td style="padding:3px 8px; text-align:center;">2</td><td style="padding:3px 8px; text-align:center;">✅</td></tr>
+            <tr style="background:#f4f5f7;"><td style="padding:3px 8px; text-align:center;">22</td><td style="padding:3px 8px; text-align:center;">13</td><td style="padding:3px 8px; text-align:center;">2</td><td style="padding:3px 8px; text-align:center;">—</td></tr>
+            <tr><td style="padding:3px 8px; text-align:center;">25</td><td style="padding:3px 8px; text-align:center;">14</td><td style="padding:3px 8px; text-align:center;">2</td><td style="padding:3px 8px; text-align:center;">—</td></tr>
+            <tr style="background:#f4f5f7;"><td style="padding:3px 8px; text-align:center;"><strong>26</strong></td><td style="padding:3px 8px; text-align:center;"><strong>15</strong></td><td style="padding:3px 8px; text-align:center;">2</td><td style="padding:3px 8px; text-align:center;">✅</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
