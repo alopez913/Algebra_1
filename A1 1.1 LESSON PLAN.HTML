@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson Plan – Section 1.1</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body, {
+    delimiters: [
+      {left: '\\(', right: '\\)', display: false},
+      {left: '\\[', right: '\\]', display: true}
+    ]
+  });"></script>
+<style>
+  :root {
+    --navy: #1a2744;
+    --blue: #2d5fa6;
+    --light-blue: #e8f0fb;
+    --accent: #e8a020;
+    --green: #2e7d55;
+    --light-green: #eaf4ee;
+    --red: #c0392b;
+    --light-red: #fdecea;
+    --gray: #f4f5f7;
+    --border: #d1d9e6;
+    --text: #1e2535;
+    --muted: #6b7897;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: #f0f3f9;
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .page {
+    max-width: 850px;
+    margin: 32px auto;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  }
+
+  .header {
+    background: var(--navy);
+    padding: 28px 36px 22px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 220px; height: 100%;
+    background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.04) 100%);
+  }
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: white;
+    letter-spacing: 0.2px;
+  }
+  .header h2 {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.7);
+    margin-top: 3px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .badge-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+  }
+  .badge {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .badge.accent { background: var(--accent); border-color: var(--accent); color: white; }
+
+  .body { padding: 28px 36px; display: grid; gap: 22px; }
+
+  .card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .card-header {
+    background: var(--navy);
+    color: white;
+    padding: 9px 16px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-header.blue { background: var(--blue); }
+  .card-header.green { background: var(--green); }
+  .card-header.accent { background: var(--accent); }
+  .card-header.red { background: var(--red); }
+  .card-body { padding: 14px 16px; }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  .info-item label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 3px;
+  }
+  .info-item span {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .criteria-list { list-style: none; display: grid; gap: 6px; }
+  .criteria-list li {
+    padding: 7px 10px 7px 32px;
+    background: var(--light-blue);
+    border-radius: 6px;
+    font-size: 13px;
+    position: relative;
+  }
+  .criteria-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 10px;
+    color: var(--blue);
+    font-weight: 700;
+  }
+
+  .vocab-chip {
+    display: inline-block;
+    background: var(--light-blue);
+    border: 1px solid #b8ccf0;
+    color: var(--blue);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    margin: 3px;
+  }
+
+  .day-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .day-card {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .day-header {
+    padding: 10px 14px;
+    font-weight: 700;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .day-header.day1 { background: var(--light-blue); color: var(--blue); border-bottom: 2px solid var(--blue); }
+  .day-header.day2 { background: var(--light-green); color: var(--green); border-bottom: 2px solid var(--green); }
+  .day-body { padding: 12px 14px; display: grid; gap: 8px; }
+
+  .phase {
+    border-radius: 7px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .phase-label {
+    padding: 5px 10px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .phase-label.i-do  { background: #e3ecf9; color: var(--blue); }
+  .phase-label.we-do { background: #e9f5ee; color: var(--green); }
+  .phase-label.you-do{ background: #fff4e0; color: #b07000; }
+  .phase-label.assign{ background: #f0eafb; color: #6a3db8; }
+  .phase-label.warm  { background: #fdecea; color: var(--red); }
+
+  .phase-content {
+    padding: 7px 10px;
+    font-size: 12.5px;
+    background: white;
+  }
+  .phase-content p { margin-bottom: 3px; }
+  .phase-content .detail { color: var(--muted); font-size: 11.5px; font-style: italic; }
+  .time-tag {
+    font-size: 10px;
+    font-weight: 700;
+    background: rgba(255,255,255,0.7);
+    border-radius: 10px;
+    padding: 1px 6px;
+  }
+
+  /* math expressions row — horizontally scrollable on small screens */
+  .math-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 4px;
+    align-items: center;
+  }
+  .math-item {
+    background: var(--gray);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+  .math-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    margin-right: 4px;
+  }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--navy);
+    color: white;
+    padding: 8px 12px;
+    text-align: left;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: var(--gray); }
+  .tag {
+    display: inline-block;
+    border-radius: 4px;
+    padding: 1px 7px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .tag.day1 { background: var(--light-blue); color: var(--blue); }
+  .tag.day2 { background: var(--light-green); color: var(--green); }
+
+  .mini-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .mini-item {
+    background: var(--light-red);
+    border: 1px solid #f4b8b2;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 12.5px;
+  }
+  .mini-item .num {
+    font-weight: 700;
+    color: var(--red);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+
+  .note {
+    background: #fffbe6;
+    border-left: 4px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 10px 14px;
+    font-size: 12.5px;
+    color: #6b5000;
+  }
+  .note strong { color: #4a3800; }
+
+  /* KaTeX size tweak to match surrounding text */
+  .katex { font-size: 1em; }
+
+  @media print {
+    body { background: white; }
+    .page { box-shadow: none; margin: 0; border-radius: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <h1>Section 1.1 — Evaluating Algebraic Expressions</h1>
+      <h2>Big Ideas Learning · Algebra 1 · Chapter 1</h2>
+    </div>
+    <div class="badge-row">
+      <span class="badge">OAS: A1.A.3.4</span>
+      <span class="badge">2 Days · 45 min each</span>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <!-- AT A GLANCE -->
+    <div class="card">
+      <div class="card-header">At a Glance</div>
+      <div class="card-body">
+        <div class="info-grid">
+          <div class="info-item">
+            <label>Learning Target</label>
+            <span>Evaluate algebraic expressions</span>
+          </div>
+          <div class="info-item">
+            <label>Vocabulary</label>
+            <span>algebraic expression</span>
+          </div>
+          <div class="info-item">
+            <label>Oklahoma Standard</label>
+            <span>A1.A.3.4</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUCCESS CRITERIA -->
+    <div class="card">
+      <div class="card-header blue">✦ Success Criteria</div>
+      <div class="card-body">
+        <ul class="criteria-list">
+          <li>Evaluate algebraic expressions for given replacement values of the variables.</li>
+          <li>Evaluate expressions involving absolute value, square roots, and order of operations.</li>
+          <li>Evaluate expressions with two or more variables using substitution.</li>
+          <li>Evaluate expressions to solve real-life problems.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- VOCABULARY -->
+    <div class="card">
+      <div class="card-header">Vocabulary</div>
+      <div class="card-body">
+        <span class="vocab-chip">algebraic expression</span>
+        <p style="margin-top:10px; font-size:12.5px; color:var(--muted);">An expression that may contain numbers, operations, and one or more variables. To evaluate, substitute the given values and simplify using order of operations.</p>
+      </div>
+    </div>
+
+    <!-- EXAMPLES REFERENCE TABLE -->
+    <div class="card">
+      <div class="card-header blue">Examples Covered</div>
+      <div class="card-body" style="padding:0;">
+        <table>
+          <thead>
+            <tr>
+              <th>Day</th>
+              <th>Example</th>
+              <th>Title (from text)</th>
+              <th>Values Used</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="tag day1">Day 1</span></td>
+              <td><strong>Example 1</strong></td>
+              <td>Evaluating Expressions with One Variable</td>
+              <td>\(x = 8\)</td>
+            </tr>
+            <tr>
+              <td><span class="tag day1">Day 1</span></td>
+              <td><strong>Extra Example 1</strong></td>
+              <td>We Do follow-along</td>
+              <td>\(x = 4\)</td>
+            </tr>
+            <tr>
+              <td><span class="tag day1">Day 1</span> <span style="font-size:11px;color:var(--muted);">intro only</span></td>
+              <td><strong>Example 2</strong></td>
+              <td>Evaluating Expressions with Two Variables</td>
+              <td>\(x = -3,\ y = 4\)</td>
+            </tr>
+            <tr>
+              <td><span class="tag day1">Day 1</span></td>
+              <td><strong>Extra Example 2</strong></td>
+              <td>We Do follow-along</td>
+              <td>\(x = -4,\ y = 5\)</td>
+            </tr>
+            <tr>
+              <td><span class="tag day2">Day 2</span></td>
+              <td><strong>Example 3</strong></td>
+              <td>Evaluating Expressions</td>
+              <td>\(a=\tfrac{2}{3},\ b=9,\ c=-4\)</td>
+            </tr>
+            <tr>
+              <td><span class="tag day2">Day 2</span></td>
+              <td><strong>Extra Example 3</strong></td>
+              <td>We Do follow-along</td>
+              <td>\(a=16,\ b=\tfrac{3}{4},\ c=-1\)</td>
+            </tr>
+            <tr>
+              <td><span class="tag day2">Day 2</span></td>
+              <td><strong>Example 4</strong></td>
+              <td>Modeling Real Life</td>
+              <td>\(9.50a + 5.25c + 7.00s\)</td>
+            </tr>
+            <tr>
+              <td style="color:var(--muted); font-size:12px;"><em>Skipped</em></td>
+              <td style="color:var(--muted);"><em>Example 5</em></td>
+              <td style="color:var(--muted);"><em>Non-Standard Operations</em></td>
+              <td style="color:var(--muted);">—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- DAY PLANS -->
+    <div class="page-break"></div>
+    <div>
+      <div style="font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin-bottom:10px;">Daily Pacing</div>
+      <div class="day-grid">
+
+        <!-- DAY 1 -->
+        <div class="day-card">
+          <div class="day-header day1">
+            <span>📅 Day 1</span>
+            <span style="font-weight:400; font-size:12px;">One-Variable Expressions</span>
+          </div>
+          <div class="day-body">
+
+            <div class="phase">
+              <div class="phase-label i-do">
+                <span>I Do — Direct Instruction</span>
+                <span class="time-tag">~18 min</span>
+              </div>
+              <div class="phase-content">
+                <p><strong>Example 1:</strong> Evaluating Expressions with One Variable</p>
+                <p class="detail">Evaluate for \(x = 8\):</p>
+                <div class="math-row">
+                  <span class="math-item"><span class="math-label">(a)</span>\(x + 4\)</span>
+                  <span class="math-item"><span class="math-label">(b)</span>\(|4 - x| + 2\)</span>
+                  <span class="math-item"><span class="math-label">(c)</span>\(\sqrt{2x} - 3\)</span>
+                </div>
+                <p style="margin-top:8px;"><strong>Example 2:</strong> Evaluating Expressions with Two Variables</p>
+                <p class="detail">Evaluate for \(x = -3,\ y = 4\):</p>
+                <div class="math-row">
+                  <span class="math-item"><span class="math-label">(a)</span>\(2x + 3y\)</span>
+                  <span class="math-item"><span class="math-label">(b)</span>\(\dfrac{x+y}{x^2}\)</span>
+                </div>
+                <p class="detail" style="margin-top:6px;">⚠️ Introduce only — students will not practice independently today.</p>
+              </div>
+            </div>
+
+            <div class="phase">
+              <div class="phase-label we-do">
+                <span>We Do — Guided Practice</span>
+                <span class="time-tag">~10 min</span>
+              </div>
+              <div class="phase-content">
+                <p><strong>Extra Example 1</strong> — evaluate for \(x = 4\):</p>
+                <div class="math-row">
+                  <span class="math-item"><span class="math-label">(a)</span>\(x - 1\)</span>
+                  <span class="math-item"><span class="math-label">(b)</span>\(2 - |3 + x|\)</span>
+                  <span class="math-item"><span class="math-label">(c)</span>\(\sqrt{9x} - 5\)</span>
+                </div>
+                <p style="margin-top:8px;"><strong>Extra Example 2</strong> — evaluate for \(x = -4,\ y = 5\):</p>
+                <div class="math-row">
+                  <span class="math-item"><span class="math-label">(a)</span>\(5x + 3y\)</span>
+                  <span class="math-item"><span class="math-label">(b)</span>\(\dfrac{y^2}{y-x}\)</span>
+                </div>
+                <p class="detail" style="margin-top:5px;">Students try each part, then reveal and discuss.</p>
+              </div>
+            </div>
+
+            <div class="phase">
+              <div class="phase-label you-do">
+                <span>You Do — Self-Assessment</span>
+                <span class="time-tag">~10 min</span>
+              </div>
+              <div class="phase-content">
+                <p><strong>Self-Assessment Problem 1 only</strong></p>
+                <div class="math-row">
+                  <span class="math-item">\(2\sqrt{m+31};\ m = -6\)</span>
+                </div>
+                <p class="detail" style="margin-top:5px;">⚠️ Skip Problems 2, 3, 4 — two or more variables; saved for Day 2.</p>
+              </div>
+            </div>
+
+            <div class="phase">
+              <div class="phase-label assign">
+                <span>Assignment (in class)</span>
+                <span class="time-tag">~9 min</span>
+              </div>
+              <div class="phase-content">
+                <p><strong>Exercises 1, 2, 3, 4</strong></p>
+                <p class="detail">Single-variable substitution. Directly mirrors Example 1.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- DAY 2 -->
+        <div class="day-card">
+          <div class="day-header day2">
+            <span>📅 Day 2</span>
+            <span style="font-weight:400; font-size:12px;">Multi-Variable &amp; Complex Expressions</span>
+          </div>
+          <div class="day-body">
+
+            <div class="phase">
+              <div class="phase-label warm">
+                <span>Warm-Up Review</span>
+                <span class="time-tag">~5 min</span>
+              </div>
+              <div class="phase-content">
+                <p>Quick two-variable problem revisiting Example 2.</p>
+                <p class="detail">Bridge from Day 1 → Day 2 new content.</p>
+              </div>
+            </div>
+
+            <div class="phase">
+              <div class="phase-label i-do">
+                <span>I Do — Direct Instruction</span>
+                <span class="time-tag">~12 min</span>
+              </div>
+              <div class="phase-content">
+                <p><strong>Example 3:</strong> Evaluating Expressions</p>
+                <p class="detail">Evaluate for \(a = \tfrac{2}{3},\ b = 9,\ c = -4\):</p>
+                <div class="math-row">
+                  <span class="math-item"><span class="math-label">(a)</span>\(2(9a^2 - 2b + 3c)\)</span>
+                  <span class="math-item"><span class="math-label">(b)</span>\(\sqrt{b} - 3a + 2c\)</span>
+                </div>
+                <p class="detail" style="margin-top:5px; margin-bottom:5px;">Emphasize fractions, order of operations, and careful substitution.</p>
+                <p><strong>Example 4:</strong> Modeling Real Life</p>
+                <p class="detail">The cost for \(a\) adults, \(c\) children, \(s\) seniors: \(9.50a + 5.25c + 7.00s\). Find cost for 4 adults, 6 children, 2 seniors.</p>
+              </div>
+            </div>
+
+            <div class="phase">
+              <div class="phase-label we-do">
+                <span>We Do — Guided Practice</span>
+                <span class="time-tag">~8 min</span>
+              </div>
+              <div class="phase-content">
+                <p><strong>Extra Example 3</strong> — evaluate for \(a=16,\ b=\tfrac{3}{4},\ c=-1\):</p>
+                <div class="math-row">
+                  <span class="math-item"><span class="math-label">(a)</span>\(3(-2a + 8b - 5c^2)\)</span>
+                  <span class="math-item"><span class="math-label">(b)</span>\(\sqrt{a} - 4b + 5c\)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="phase">
+              <div class="phase-label you-do">
+                <span>You Do — Self-Assessment</span>
+                <span class="time-tag">~6 min</span>
+              </div>
+              <div class="phase-content">
+                <p><strong>Self-Assessment Problems 2, 3, 4</strong></p>
+                <div class="math-row" style="flex-direction:column; align-items:flex-start; gap:5px;">
+                  <span class="math-item"><span class="math-label">2.</span>\(4s - t;\ s=\tfrac{3}{4},\ t=\tfrac{1}{2}\)</span>
+                  <span class="math-item"><span class="math-label">3.</span>\(1 - |a| \div b;\ a=-\tfrac{2}{3},\ b=2\)</span>
+                  <span class="math-item"><span class="math-label">4.</span>\(5s - \sqrt{r} \div 6;\ r=9,\ s=1.5\)</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="phase">
+              <div class="phase-label assign">
+                <span>Assignment (in class)</span>
+                <span class="time-tag">~12 min</span>
+              </div>
+              <div class="phase-content">
+                <p><strong>Exercises 7, 8, 9, 10, 13, 15, 18</strong></p>
+                <p class="detail">Two-variable (7–10) + multi-variable (13, 15) + real-life modeling (18). Reinforces Examples 2, 3, and 4.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MINI ASSESSMENT -->
+    <div class="card">
+      <div class="card-header red">Exit Ticket / Mini-Assessment (end of Day 2)</div>
+      <div class="card-body">
+        <div class="mini-grid">
+          <div class="mini-item">
+            <div class="num">Problem 1</div>
+            Evaluate \(|-3x + 7|\) for \(x = 6\).<br>
+            <strong>Answer: 11</strong>
+          </div>
+          <div class="mini-item">
+            <div class="num">Problem 2</div>
+            Evaluate \(-2(\sqrt{a} + 4b - 3)\) for \(a = 16,\ b = \tfrac{3}{4}\).<br>
+            <strong>Answer: −8</strong>
+          </div>
+          <div class="mini-item">
+            <div class="num">Problem 3</div>
+            Find cost using \(12a + 7.25c + 9.75s\) for 2 adults, 5 children, 4 seniors.<br>
+            <strong>Answer: $99.25</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEACHER NOTES -->
+    <div class="note">
+      <div style="display:flex; gap:20px; align-items:flex-start;">
+        <div style="flex:1; min-width:200px; font-size:12px;">
+          <strong>📝 Teacher Notes:</strong> Example 4 (Modeling Real Life) uses Exercise 17 from the text (performance ticket cost) as the guided notes I Do. Example 5 (Non-Standard Operations) is intentionally omitted as it falls outside the core standard.
+          <br><br>
+          <strong>Assignment Guide:</strong> Problems selected align with the textbook's <em>Proficient</em> level. The table cross-references BI curriculum exercise numbers with student worksheet numbers. <strong>✅ marks the textbook's key check problems</strong> for the learning target — if time is short, these are non-negotiable. Exercise 18 (Worksheet #11) is the modeling anchor and should not be skipped.
+        </div>
+        <table style="width:280px; flex-shrink:0; border-collapse:collapse; font-size:11.5px;">
+          <thead>
+            <tr>
+              <th style="background:#1a2744; color:white; padding:4px 8px; text-align:center;">BI #</th>
+              <th style="background:#1a2744; color:white; padding:4px 8px; text-align:center;">WS #</th>
+              <th style="background:#1a2744; color:white; padding:4px 8px; text-align:center;">Day</th>
+              <th style="background:#1a2744; color:white; padding:4px 8px; text-align:center;">Check</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background:#f4f5f7;"><td style="padding:3px 8px; text-align:center;">1</td><td style="padding:3px 8px; text-align:center;">1</td><td style="padding:3px 8px; text-align:center;">1</td><td style="padding:3px 8px; text-align:center;">—</td></tr>
+            <tr><td style="padding:3px 8px; text-align:center;">2</td><td style="padding:3px 8px; text-align:center;">2</td><td style="padding:3px 8px; text-align:center;">1</td><td style="padding:3px 8px; text-align:center;">—</td></tr>
+            <tr style="background:#f4f5f7;"><td style="padding:3px 8px; text-align:center;"><strong>3</strong></td><td style="padding:3px 8px; text-align:center;"><strong>3</strong></td><td style="padding:3px 8px; text-align:center;">1</td><td style="padding:3px 8px; text-align:center;">✅</td></tr>
+            <tr><td style="padding:3px 8px; text-align:center;">4</td><td style="padding:3px 8px; text-align:center;">4</td><td style="padding:3px 8px; text-align:center;">1</td><td style="padding:3px 8px; text-align:center;">—</td></tr>
+            <tr style="background:#f4f5f7;"><td style="padding:3px 8px; text-align:center;">7</td><td style="padding:3px 8px; text-align:center;">5</td><td style="padding:3px 8px; text-align:center;">2</td><td style="padding:3px 8px; text-align:center;">—</td></tr>
+            <tr><td style="padding:3px 8px; text-align:center;">8</td><td style="padding:3px 8px; text-align:center;">6</td><td style="padding:3px 8px; text-align:center;">2</td><td style="padding:3px 8px; text-align:center;">—</td></tr>
+            <tr style="background:#f4f5f7;"><td style="padding:3px 8px; text-align:center;">9</td><td style="padding:3px 8px; text-align:center;">7</td><td style="padding:3px 8px; text-align:center;">2</td><td style="padding:3px 8px; text-align:center;">—</td></tr>
+            <tr><td style="padding:3px 8px; text-align:center;"><strong>10</strong></td><td style="padding:3px 8px; text-align:center;"><strong>8</strong></td><td style="padding:3px 8px; text-align:center;">2</td><td style="padding:3px 8px; text-align:center;">✅</td></tr>
+            <tr style="background:#f4f5f7;"><td style="padding:3px 8px; text-align:center;"><strong>13</strong></td><td style="padding:3px 8px; text-align:center;"><strong>9</strong></td><td style="padding:3px 8px; text-align:center;">2</td><td style="padding:3px 8px; text-align:center;">✅</td></tr>
+            <tr><td style="padding:3px 8px; text-align:center;">15</td><td style="padding:3px 8px; text-align:center;">10</td><td style="padding:3px 8px; text-align:center;">2</td><td style="padding:3px 8px; text-align:center;">—</td></tr>
+            <tr style="background:#f4f5f7;"><td style="padding:3px 8px; text-align:center;"><strong>18</strong></td><td style="padding:3px 8px; text-align:center;"><strong>11</strong></td><td style="padding:3px 8px; text-align:center;">2</td><td style="padding:3px 8px; text-align:center;">✅</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
